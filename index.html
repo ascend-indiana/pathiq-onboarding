@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PathIQ | Ascend Indiana</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2345AADD' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0'/%3E%3Cpath d='M17 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0'/%3E%3Cpath d='M11 19h5.5a3.5 3.5 0 0 0 0 -7h-8a3.5 3.5 0 0 1 0 -7h4.5'/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--char:#1C1C1C;--blue:#45AADD;--blue-d:#2B8FC4;--teal:#7CFCEA;--bg:#F8FAFB;--soft:#F1F5F8;--line:#E3E8EC;--mute:#5E6A72}
+*{box-sizing:border-box;margin:0}
+body{font-family:Archivo,Tahoma,Arial,sans-serif;color:var(--char);background:#fff;-webkit-font-smoothing:antialiased}
+button,input,textarea{font:inherit;color:inherit}button{cursor:pointer}
+a{color:var(--blue-d);font-weight:600;text-decoration:none}a:hover{text-decoration:underline}
+.page{min-height:100vh;display:grid;grid-template-columns:44% 56%}
+.brand{background:var(--char);color:#fff;padding:40px 48px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.brand:before{content:"";position:absolute;right:-140px;top:-140px;width:420px;height:420px;border-radius:50%;border:2px solid rgba(69,170,221,.35)}
+.brand:after{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;border-radius:50%;border:2px solid rgba(69,170,221,.25)}
+.brand .blob{position:absolute;left:-120px;bottom:-120px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(69,170,221,.4),transparent 70%)}
+.logo{display:inline-flex;flex-direction:column;align-items:center;line-height:1}
+.logo .row{display:flex;align-items:center;gap:8px;font-weight:700;font-size:28px;letter-spacing:-.5px}
+.logo .path{margin-right:-8px}.logo .iq{color:var(--blue)}
+.logo small{font-size:8px;letter-spacing:2px;opacity:.7;margin-top:4px;font-weight:600}
+.logo svg{width:30px;height:30px;stroke:var(--blue);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.brand .logo{align-self:flex-start}
+.hero{position:relative;z-index:1;max-width:420px}
+.hero h2{font-size:clamp(28px,3.4vw,42px);line-height:1.1;letter-spacing:-1px;font-weight:700;margin-bottom:18px}
+.hero h2 span{color:var(--blue)}
+.stat{margin-bottom:26px}
+.stat b{display:block;font-size:60px;line-height:1;letter-spacing:-2px;color:var(--blue);font-weight:700}
+.stat span{display:block;margin-top:8px;font-size:13px;letter-spacing:1.4px;text-transform:uppercase;color:#C3CDD3}
+.hero ul{list-style:none;padding:0;display:grid;gap:12px;font-size:16px;color:#D6DEE3}
+.hero li{display:flex;gap:10px;align-items:flex-start}
+.hero li:before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--blue);margin-top:8px}
+.partnerrow{position:relative;z-index:1;display:flex;align-items:center;gap:12px;font-size:12px;color:#AEB9C0}
+.plogo{width:96px;height:40px;border:1.5px dashed #6C7A83;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:10px;letter-spacing:1px;color:#8E9BA3}
+.side{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;position:relative}
+.card{width:100%;max-width:440px}
+.mlogo{display:none}
+.dots{display:flex;align-items:center;margin-bottom:28px}
+.dots i{width:14px;height:14px;border-radius:50%;border:2px solid #A9B5BD;background:#fff;flex:none}
+.dots i.on{background:var(--char);border-color:var(--char)}
+.dots u{flex:1;height:2px;background:#A9B5BD}.dots u.on{background:var(--char)}
+h1{font-size:30px;letter-spacing:-.8px;margin-bottom:8px;font-weight:700}
+.sub{color:var(--mute);margin-bottom:22px;line-height:1.5}
+.sso{display:grid;gap:10px}
+.sbtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:13px 18px;font-weight:600;font-size:15.5px;transition:.15s}
+.sbtn:hover{border-color:var(--char)}.sbtn svg{width:20px;height:20px}
+.or{display:flex;align-items:center;gap:12px;color:var(--mute);font-size:13px;margin:20px 0}
+.or:before,.or:after{content:"";flex:1;height:1px;background:var(--line)}
+label{display:block;font-size:13px;font-weight:600;margin:0 0 6px}
+.field{width:100%;border:1.5px solid var(--line);border-radius:14px;padding:13px 16px;font-size:16px;background:#fff;outline:0}
+.field:focus{border-color:var(--blue)}.field.err{border-color:#D6454D}
+.fg{margin-bottom:14px;position:relative}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.eye{position:absolute;right:12px;top:33px;background:none;border:0;color:var(--mute);font-size:13px;font-weight:600}
+.hint{font-size:12.5px;color:var(--mute);margin-top:6px}.hint.err{color:#D6454D}
+.btn{background:var(--char);color:#fff;border:0;border-radius:999px;padding:14px 26px;font-weight:600;width:100%;font-size:16px}
+.btn:hover{background:#000}.btn.auto{width:auto;padding:13px 34px}
+.outline{background:#fff;color:var(--char);border:1.5px solid var(--char);border-radius:999px;padding:12px 24px;font-weight:600}
+.linkbtn{background:none;border:0;color:var(--blue-d);font-weight:600;font-size:14px;padding:6px}
+.fine{font-size:12px;color:var(--mute);text-align:center;margin-top:14px;line-height:1.5}
+.login{text-align:center;margin-top:20px;font-size:14.5px;color:var(--mute)}
+.foot{text-align:center;font-size:12px;color:var(--mute);margin-top:26px;line-height:1.6}
+.notice{background:#FFF6E0;border:1px solid #F3D78B;border-radius:12px;padding:12px 14px;font-size:14px;margin-bottom:14px;line-height:1.45}
+.nav2{display:flex;justify-content:space-between;align-items:center;margin-top:26px}
+.skip{display:flex;gap:10px;align-items:center}
+.skipall{text-align:center;margin-top:18px}
+.skipall button{color:var(--mute);font-weight:400;text-decoration:underline}
+.tiles{display:grid;gap:10px}
+.tile{background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;text-align:left;display:flex;gap:12px;align-items:flex-start;transition:.15s;width:100%}
+.tile:hover{border-color:var(--blue)}
+.tile.on{border-color:var(--char);box-shadow:inset 0 0 0 1px var(--char)}
+.tile i{font-style:normal;font-size:22px;line-height:1.2}
+.tile b{display:block;font-size:15.5px}.tile span{display:block;font-size:13px;color:var(--mute);margin-top:3px;line-height:1.35}
+.tile .ck{margin-left:auto;width:22px;height:22px;border:2px solid #A9B5BD;border-radius:6px;flex:none;color:#fff;text-align:center;line-height:18px;font-size:14px}
+.tile.on .ck{background:var(--char);border-color:var(--char)}
+.addrow{display:flex;gap:8px}
+.acwrap{position:relative;flex:1}
+.addbtn{background:var(--blue);color:#fff;border:0;border-radius:14px;padding:0 20px;font-weight:600}
+.addbtn:hover{background:var(--blue-d)}
+.sug{position:absolute;left:0;right:0;top:calc(100% + 6px);background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 30px rgba(28,28,28,.14);z-index:5;overflow:hidden;display:none}
+.sug button{display:flex;justify-content:space-between;width:100%;text-align:left;background:none;border:0;padding:12px 16px;font-size:15.5px}
+.sug button:hover,.sug button.hl{background:var(--soft)}
+.sug small{color:var(--mute);font-size:13px}
+.sug .lbl{padding:8px 16px 2px;font-size:11.5px;letter-spacing:1px;color:var(--mute);font-weight:600}
+.count{font-size:13px;color:var(--mute);margin-top:16px;font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;min-height:34px}
+.chip{display:inline-flex;align-items:center;gap:6px;background:#E3F3FB;color:#1D6F9A;border-radius:999px;padding:7px 8px 7px 14px;font-weight:600;font-size:14.5px}
+.chip b{background:#fff;border-radius:50%;width:20px;height:20px;line-height:19px;text-align:center;font-size:14px;cursor:pointer}
+.empty{color:var(--mute);font-size:14px;padding-top:6px}
+textarea.field{resize:none;min-height:150px;line-height:1.45}
+.counter{text-align:right;font-size:13px;color:var(--mute);margin-top:6px}.counter.warn{color:#C77700;font-weight:600}
+.priv{display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--mute);margin-top:12px;line-height:1.45}
+.slide{animation:in .25s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+/* chat landing */
+#chat{display:none;min-height:100vh;background:var(--bg);flex-direction:column}
+#chat header{display:flex;justify-content:space-between;align-items:center;padding:0 24px;height:60px;background:#fff;border-bottom:1px solid var(--line)}
+#chat .logo{align-items:flex-start}#chat .logo .row{font-size:20px}#chat .logo svg{width:22px;height:22px}#chat .logo small{display:none}
+.avatar{width:34px;height:34px;border-radius:50%;background:var(--char);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:13px}
+.cwrap{flex:1;display:flex;flex-direction:column;max-width:720px;width:100%;margin:0 auto;padding:24px 20px 20px}
+#msgs{flex:1;overflow:auto;padding-bottom:12px}
+.m{max-width:85%;padding:11px 15px;border-radius:16px;margin:8px 0;font-size:15.5px;line-height:1.5}
+.m.u{background:var(--blue);color:#fff;margin-left:auto;border-bottom-right-radius:4px}
+.m.a{background:#fff;border:1px solid var(--line);border-bottom-left-radius:4px}
+.replies{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 10px}
+.rep{background:#fff;border:1.5px solid var(--blue);color:var(--blue-d);border-radius:999px;padding:9px 16px;font-weight:600;font-size:14.5px}
+.rep:hover{background:#E3F3FB}
+.cbar{display:flex;gap:8px;align-items:flex-end;background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:8px}
+.cbar:focus-within{border-color:var(--blue)}
+.cbar textarea{flex:1;border:0;outline:0;resize:none;font-size:15.5px;line-height:1.4;padding:8px 10px;max-height:140px;background:transparent}
+.cbar .btn{width:auto;padding:10px 20px}
+/* review nav */
+.jump{position:fixed;left:8px;bottom:8px;background:var(--char);color:#fff;border-radius:999px;padding:4px 6px;display:flex;gap:2px;z-index:40;font-size:11px;opacity:.9}
+.jump button{background:none;border:0;color:#cfd8de;padding:4px 9px;border-radius:999px;font-size:11px}
+.jump button:hover{background:#333;color:#fff}
+.mstat{display:none}
+@media(max-width:860px){
+ .page{grid-template-columns:1fr}.brand{display:none}
+ .mlogo{display:flex;flex-direction:column;align-items:center;margin-bottom:14px}
+ .mlogo .logo{color:var(--char)}
+ .mlogo .plogo{margin-top:12px;border-color:#B9C3CA;color:#8E9BA3}
+ .mstat{display:block;text-align:center;font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:var(--mute);margin-bottom:24px}
+ .mstat b{display:block;font-size:38px;line-height:1.05;letter-spacing:-1.2px;color:var(--blue-d);font-weight:700;text-transform:none}
+ .side{justify-content:flex-start;padding-top:28px}
+ h1{font-size:26px}.two{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="jump" id="jump"><button data-j="account">Sign up</button><button data-j="signin">Sign in</button><button data-j="forgot">Forgot</button><button data-j="s0">Industries</button><button data-j="s1">Location</button><button data-j="s2">Titles</button><button data-j="s3">About you</button><button data-j="chat">Chat</button></div>
+
+<div class="page" id="pg">
+  <aside class="brand">
+    <div class="logo"><div class="row"><svg viewBox="0 0 24 24"><path d="M3 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M17 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M11 19h5.5a3.5 3.5 0 0 0 0 -7h-8a3.5 3.5 0 0 1 0 -7h4.5"/></svg><span class="path">Path</span><span class="iq">IQ</span></div><small>POWERED BY ASCEND INDIANA</small></div>
+    <div class="hero">
+      <div class="stat"><b>50,619</b><span>current Indiana job listings</span></div>
+      <h2>Find work that fits <span>your life</span> in Indiana.</h2>
+      <ul><li>Jobs in Indiana's advanced industries, updated daily</li><li>Ask for what you want in plain language</li><li>Free for every Hoosier</li></ul>
+    </div>
+    <div class="partnerrow"><div class="plogo">PARTNER LOGO</div><span>In partnership with your local workforce partner</span></div>
+    <div class="blob"></div>
+  </aside>
+  <main class="side"><div class="card" id="card"></div></main>
+</div>
+
+<section id="chat">
+  <header><div class="logo"><div class="row"><svg viewBox="0 0 24 24"><path d="M3 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M17 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M11 19h5.5a3.5 3.5 0 0 0 0 -7h-8a3.5 3.5 0 0 1 0 -7h4.5"/></svg><span class="path">Path</span><span class="iq">IQ</span></div></div><div class="avatar" id="av">SE</div></header>
+  <div class="cwrap"><div id="msgs"></div><div class="replies" id="reps"></div>
+   <form class="cbar" id="cform"><textarea id="cin" rows="1" placeholder="Tell me what kind of work you're looking for…"></textarea><button class="btn">Send</button></form></div>
+</section>
+
+<script>
+const $=s=>document.querySelector(s);
+const S={view:'account',step:0,inds:new Set(),locs:[],titles:[],about:'',first:'Scott',last:'Evans'};
+const STEPS=4;
+const G=`<svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 8 3l5.7-5.7C34 6.1 29.3 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.6-.4-3.9z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 8 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.6-.4-3.9z"/></svg>`;
+const LI=`<svg viewBox="0 0 24 24"><rect width="24" height="24" rx="4" fill="#0A66C2"/><path fill="#fff" d="M7 9.5H4.5V19H7V9.5zM5.75 8.3a1.45 1.45 0 100-2.9 1.45 1.45 0 000 2.9zM19.5 19v-5.2c0-2.5-1.3-3.7-3.1-3.7-1.4 0-2.1.8-2.4 1.3V9.5h-2.5V19H14v-5.3c0-.3 0-.6.1-.8.2-.6.8-1.2 1.7-1.2 1.2 0 1.7.9 1.7 2.3V19h2z"/></svg>`;
+const mlogo=`<div class="mlogo"><div class="logo"><div class="row"><svg viewBox="0 0 24 24"><path d="M3 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M17 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"/><path d="M11 19h5.5a3.5 3.5 0 0 0 0 -7h-8a3.5 3.5 0 0 1 0 -7h4.5"/></svg><span class="path">Path</span><span class="iq">IQ</span></div><small>POWERED BY ASCEND INDIANA</small></div><div class="plogo">PARTNER LOGO</div></div><div class="mstat"><b>50,619</b>Indiana jobs, updated daily</div>`;
+const dots=()=>`<div class="dots">${Array.from({length:STEPS},(_,i)=>(i?`<u class="${i<=S.step?'on':''}"></u>`:'')+`<i class="${i<=S.step?'on':''}"></i>`).join('')}</div>`;
+const recaptcha=`This site is protected by reCAPTCHA and the Google <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a> apply.`;
+const sso=`<div class="sso"><button class="sbtn" data-go="sso">${G}Continue with Google</button><button class="sbtn" data-go="sso">${LI}Continue with LinkedIn</button></div>`;
+/* data */
+const IND=[["🏭","Advanced Manufacturing & Logistics","Example roles to be defined with the initiative"],["🌾","Agbiosciences","Example roles to be defined with the initiative"],["🔬","Life Sciences","Example roles to be defined with the initiative"],["💻","Digital & Technology","Example roles to be defined with the initiative"],["✨","Something else","Show me everything. All kinds of jobs are welcome here."]];
+const CITIES=["Indianapolis","Lafayette","West Lafayette","Fort Wayne","Kokomo","Elkhart","Evansville","South Bend","Bloomington","Carmel","Fishers","Muncie","Anderson","Terre Haute","Columbus","Noblesville","Greenwood","Gary","Hammond","Richmond"];
+const ZIPS={46201:"Indianapolis",46204:"Indianapolis",46220:"Indianapolis",47901:"Lafayette",47905:"Lafayette",47906:"West Lafayette",46802:"Fort Wayne",46901:"Kokomo",46514:"Elkhart",47708:"Evansville",46601:"South Bend",47401:"Bloomington",46032:"Carmel",46037:"Fishers",47302:"Muncie"};
+const T=(i,...ts)=>ts.map(t=>({t,i}));
+const TITLES=[...T(0,"Machine Operator","CNC Machinist","Welder","Assembler","Production Supervisor","Maintenance Technician","Industrial Electrician","Quality Inspector","Forklift Operator","Warehouse Associate","Logistics Coordinator","Truck Driver"),...T(1,"Agricultural Technician","Farm Manager","Seed Technician","Crop Analyst"),...T(2,"Laboratory Technician","Biomanufacturing Associate","Clinical Research Coordinator","Pharmacy Technician","Medical Assistant","Registered Nurse"),...T(3,"Software Developer","Data Analyst","IT Support Specialist","Network Administrator","Cybersecurity Analyst"),...T(4,"Project Manager","Customer Service Representative","Administrative Assistant","Accountant","Sales Representative","Teacher","Program Coordinator","Case Manager")];
+const CFG={
+ loc:{list:'locs',max:3,ph:'City or ZIP code',cnt:'Selected locations',
+  opts(q){q=q.trim().toLowerCase();if(!q)return[];
+   if(/^\d+$/.test(q))return Object.keys(ZIPS).filter(z=>z.startsWith(q)).slice(0,5).map(z=>({label:ZIPS[z]+', IN',hint:z}));
+   return CITIES.filter(c=>c.toLowerCase().startsWith(q)||c.toLowerCase().includes(' '+q)).slice(0,5).map(c=>({label:c+', IN',hint:''}))},
+  free(q){return{err:/^\d{5}$/.test(q)?"We couldn't find that ZIP code in Indiana.":'Pick a city or ZIP code from the list.'}}},
+ title:{list:'titles',max:5,ph:'e.g. Machine operator',cnt:'Job titles',
+  opts(q){q=q.trim().toLowerCase();const sel=[...S.inds].map(n=>IND.findIndex(x=>x[1]===n));
+   let pool=TITLES.filter(x=>!S.titles.includes(x.t));
+   if(q)pool=pool.filter(x=>x.t.toLowerCase().includes(q));else if(!sel.length)return[];else pool=pool.filter(x=>sel.includes(x.i));
+   pool.sort((a,b)=>(sel.includes(b.i)?1:0)-(sel.includes(a.i)?1:0));
+   return pool.slice(0,6).map(x=>({label:x.t,hint:''}))},
+  free(q){return{label:q.replace(/\w\S*/g,t=>t===t.toUpperCase()?t:t[0].toUpperCase()+t.slice(1).toLowerCase())}}}
+};
+let CUR=null,HL=-1,OPTS=[];
+function setView(v,step){S.view=v;if(step!==undefined)S.step=step;render()}
+function render(){
+  const c=$('#card');
+  const chat=S.view==='chat';
+  $('#pg').style.display=chat?'none':'grid';$('#chat').style.display=chat?'flex':'none';
+  if(chat)return renderChat();
+  if(S.view==='account'){
+    c.innerHTML=`<div class="slide">${mlogo}
+    <h1>Create your free account</h1><p class="sub">Explore Indiana jobs in a few quick steps.</p>${sso}
+    <div class="or">or use your email</div>
+    <div class="notice" id="exist" style="display:none">Looks like you already have an account. <a href="#" data-go="signin">Log in</a> or <a href="#" data-go="forgot">reset your password</a>.</div>
+    <form id="acct" novalidate>
+      <div class="two"><div class="fg"><label for="fn">First name</label><input class="field" id="fn" autocomplete="given-name"></div><div class="fg"><label for="ln">Last name</label><input class="field" id="ln" autocomplete="family-name"></div></div>
+      <div class="fg"><label for="em">Email</label><input class="field" id="em" type="email" placeholder="you@example.com" autocomplete="email"><div class="hint err" id="emH" style="display:none">Enter a valid email address.</div></div>
+      <div class="fg"><label for="pw">Password</label><input class="field" id="pw" type="password" placeholder="At least 8 characters" autocomplete="new-password"><button type="button" class="eye" id="eye">Show</button><div class="hint" id="pwH">Use 8 or more characters.</div></div>
+      <button class="btn">Create account</button>
+    </form>
+    <p class="fine">By signing up, you agree to our <a href="https://ascendindiana.com/terms-of-service">Terms of Service</a> and <a href="https://ascendindiana.com/privacy-policy">Privacy Policy</a>.<br>${recaptcha}</p>
+    <p class="login">Already have an account? <a href="#" data-go="signin">Log in</a></p></div>`;return}
+  if(S.view==='signin'){
+    c.innerHTML=`<div class="slide">${mlogo}
+    <h1>Welcome back</h1><p class="sub">Log in to continue your job search.</p>${sso}
+    <div class="or">or use your email</div>
+    <div class="notice" id="bad" style="display:none">That email and password don't match. Try again or <a href="#" data-go="forgot">reset your password</a>.</div>
+    <form id="sin" novalidate>
+      <div class="fg"><label for="em">Email</label><input class="field" id="em" type="email" placeholder="you@example.com" autocomplete="email"></div>
+      <div class="fg"><label for="pw">Password</label><input class="field" id="pw" type="password" autocomplete="current-password"><button type="button" class="eye" id="eye">Show</button></div>
+      <div style="text-align:right;margin:-4px 0 14px"><a href="#" data-go="forgot" style="font-size:14px">Forgot password?</a></div>
+      <button class="btn">Log in</button>
+    </form>
+    <p class="login">Are you a new job seeker? <a href="https://network.ascendindiana.com/signup" data-go="account">Sign up here</a></p>
+    <p class="fine">If you are having trouble logging in, please reach out to <a href="mailto:support@ascendindiana.com">support@ascendindiana.com</a> so we can assist you.<br>${recaptcha}</p>
+    <p class="foot">© 2026 Ascend Indiana. All rights reserved. | <a href="https://ascendindiana.com/terms-of-service">Terms of Service</a> | <a href="https://ascendindiana.com/privacy-policy">Privacy Policy</a></p></div>`;return}
+  if(S.view==='forgot'){
+    c.innerHTML=`<div class="slide">${mlogo}<h1>Reset your password</h1><p class="sub">Enter your email and we'll send you a link to set a new one.</p>
+    <form id="fgt" novalidate><div class="fg"><label for="em">Email</label><input class="field" id="em" type="email" placeholder="you@example.com"></div><button class="btn">Send reset link</button></form>
+    <div class="notice" id="sent" style="display:none;margin-top:14px;background:#E8F7EE;border-color:#A9DDBB">If an account exists for that email, a reset link is on its way. The link works once and expires.</div>
+    <p class="login"><a href="#" data-go="signin">← Back to log in</a></p></div>`;return}
+  /* steps */
+  const nav=last=>`<div class="nav2">${S.step?'<button class="outline" id="backB">Back</button>':'<span></span>'}<div class="skip"><button class="linkbtn" id="skipB">Skip</button><button class="btn auto" id="nextB">${last?'Get started':'Next'}</button></div></div><div class="skipall"><button class="linkbtn" id="skipAll">Skip all for now</button></div>`;
+  if(S.step===0){
+    c.innerHTML=`<div class="slide">${mlogo}${dots()}<h1>Which of these interest you?</h1><p class="sub">Pick any, or none. This just helps us start in the right place.</p>
+    <div class="tiles">${IND.map(([e,n,b])=>`<button class="tile ${S.inds.has(n)?'on':''}" data-ind="${n}"><i>${e}</i><div><b>${n}</b><span>${b}</span></div><div class="ck">${S.inds.has(n)?'✓':''}</div></button>`).join('')}</div>${nav()}</div>`;return}
+  if(S.step===1)return stepTA('loc','Where would you like to work?','Start typing a city or ZIP code. Add up to 3 places.',nav());
+  if(S.step===2)return stepTA('title','What kind of jobs are you interested in?','Add up to 5 job titles. They don’t have to be exact, just do your best.',nav());
+  if(S.step===3){
+    c.innerHTML=`<div class="slide">${mlogo}${dots()}<h1>Tell us about you</h1><p class="sub">Briefly: who you are, what matters to you, what kind of work you want.</p>
+    <textarea class="field" id="about" maxlength="500" placeholder="Optional">${S.about}</textarea><div class="counter" id="ctr">${S.about.length}/500</div>
+    <div class="priv"><span>🔒</span><span>Just you and your PathIQ assistant see this. You can change it any time.</span></div>${nav(true)}</div>`}
+}
+function stepTA(kind,h,sub,nav){
+  CUR=kind;const cf=CFG[kind];
+  $('#card').innerHTML=`<div class="slide">${mlogo}${dots()}<h1>${h}</h1><p class="sub">${sub}</p>
+  <form class="addrow" id="addF" autocomplete="off"><div class="acwrap"><input class="field" id="ta" placeholder="${cf.ph}"><div class="sug" id="sug"></div></div><button class="addbtn">Add</button></form>
+  <div class="hint err" id="taH" style="display:none"></div><div class="count" id="cnt"></div><div class="chips" id="chips"></div>${nav}</div>`;
+  chips();
+}
+function chips(){const cf=CFG[CUR],arr=S[cf.list];
+  $('#cnt').textContent=`${cf.cnt} (${arr.length} of ${cf.max})`;
+  $('#chips').innerHTML=arr.length?arr.map((l,i)=>`<span class="chip">${l}<b data-rm="${i}" title="Remove">×</b></span>`).join(''):'<div class="empty">Nothing added yet.</div>'}
+function showSug(){const cf=CFG[CUR],q=$('#ta').value;OPTS=cf.opts(q);HL=-1;const el=$('#sug');
+  el.style.display=OPTS.length?'block':'none';
+  el.innerHTML=(!q.trim()&&OPTS.length?'<div class="lbl">SUGGESTED FOR YOU</div>':'')+OPTS.map((o,i)=>`<button type="button" data-i="${i}">${o.label}${o.hint?`<small>${o.hint}</small>`:''}</button>`).join('')}
+function err(m){const h=$('#taH');h.textContent=m;h.style.display='block'}
+function addItem(label){const cf=CFG[CUR],arr=S[cf.list];$('#taH').style.display='none';
+  if(arr.includes(label))return err('Already added.');
+  if(arr.length>=cf.max)return err(`You can add up to ${cf.max}.`);
+  arr.push(label);$('#ta').value='';$('#sug').style.display='none';chips();$('#ta').focus()}
+function submitTA(){const cf=CFG[CUR],q=$('#ta').value.trim();if(!q)return;const o=cf.opts(q);
+  if(HL>=0&&OPTS[HL])return addItem(OPTS[HL].label);
+  if(o.length&&(CUR==='loc'||o.length===1&&o[0].label.toLowerCase()===q.toLowerCase()))return addItem(o[0].label);
+  const f=cf.free(q);if(f.err)return err(f.err);addItem(f.label)}
+/* chat landing */
+function renderChat(){
+  $('#av').textContent=(S.first[0]||'S')+(S.last[0]||'');
+  const inds=[...S.inds].filter(x=>x!=='Something else');
+  const bits=[];
+  if(inds.length)bits.push('interested in '+inds.map(x=>x.replace(' & ',' and ')).join(' and ').toLowerCase());
+  const loc=S.locs.length?' near '+S.locs.map(l=>l.replace(', IN','')).join(' or '):'';
+  const tt=S.titles.length?'looking for roles like '+S.titles.slice(0,2).join(' or '):'';
+  let line;
+  if(bits.length||tt||loc){line=`Thanks, ${S.first}! I see you're ${[bits[0],tt].filter(Boolean).join(' and ')||'ready to start looking'}${loc}. Want me to pull up some roles?`}
+  else line=`Thanks, ${S.first}! Tell me what kind of work you're looking for, or tap one of these to get started.`;
+  $('#msgs').innerHTML='';say('a',line);
+  $('#reps').innerHTML=['Show me jobs','Tell me about local training','Help me figure out what I want'].map(r=>`<button class="rep">${r}</button>`).join('');
+}
+function say(w,t){const m=document.createElement('div');m.className='m '+w;m.textContent=t;$('#msgs').appendChild(m);$('#msgs').scrollTop=1e5}
+function userSays(t){$('#reps').innerHTML='';say('u',t);setTimeout(()=>say('a','In the full product, this is where PathIQ would reply and show jobs. (Next user story.)'),350)}
+/* events */
+document.addEventListener('click',e=>{
+  const t=e.target;
+  const j=t.closest('[data-j]');if(j){const v=j.dataset.j;if(v[0]==='s'&&v.length===2)setView('flow',+v[1]);else setView(v);return}
+  const go=t.closest('[data-go]');
+  if(go){e.preventDefault();const g=go.dataset.go;if(g==='sso')setView('flow',0);else setView(g);return}
+  if(t.id==='eye'){const p=$('#pw');p.type=p.type==='password'?'text':'password';t.textContent=p.type==='password'?'Show':'Hide';return}
+  const ti=t.closest('[data-ind]');if(ti){const n=ti.dataset.ind;S.inds.has(n)?S.inds.delete(n):S.inds.add(n);render();return}
+  const sg=t.closest('.sug button');if(sg){addItem(OPTS[+sg.dataset.i].label);return}
+  if(t.dataset.rm!==undefined){S[CFG[CUR].list].splice(+t.dataset.rm,1);chips();return}
+  if(t.id==='nextB'||t.id==='skipB'){if(S.step===STEPS-1)setView('chat');else{S.step++;render()}return}
+  if(t.id==='skipAll'){setView('chat');return}
+  if(t.id==='backB'){S.step--;render();return}
+  if(t.classList.contains('rep')){userSays(t.textContent);return}
+  if(!t.closest('.acwrap')){const s=$('#sug');if(s)s.style.display='none'}
+});
+document.addEventListener('focusin',e=>{if(e.target.id==='ta')showSug()});
+document.addEventListener('input',e=>{
+  if(e.target.id==='ta'){$('#taH').style.display='none';showSug()}
+  if(e.target.id==='about'){S.about=e.target.value;const n=S.about.length,c=$('#ctr');c.textContent=n+'/500';c.classList.toggle('warn',n>=450)}
+  if(e.target.id==='cin'){const a=e.target;a.style.height='auto';a.style.height=Math.min(a.scrollHeight,140)+'px'}
+});
+document.addEventListener('keydown',e=>{
+  if(e.target.id==='ta'){
+   if(e.key==='ArrowDown'&&OPTS.length){e.preventDefault();HL=(HL+1)%OPTS.length;document.querySelectorAll('.sug button').forEach((b,i)=>b.classList.toggle('hl',i===HL))}
+   if(e.key==='ArrowUp'&&OPTS.length){e.preventDefault();HL=(HL-1+OPTS.length)%OPTS.length;document.querySelectorAll('.sug button').forEach((b,i)=>b.classList.toggle('hl',i===HL))}
+   if(e.key==='Escape')$('#sug').style.display='none'}
+  if(e.target.id==='cin'&&e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('#cform').requestSubmit?$('#cform').requestSubmit():$('#cform').dispatchEvent(new Event('submit',{cancelable:true}))}
+});
+const emOk=v=>/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
+document.addEventListener('submit',e=>{
+  e.preventDefault();const id=e.target.id;
+  if(id==='addF')submitTA();
+  if(id==='cform'){const v=$('#cin').value.trim();if(v){$('#cin').value='';$('#cin').style.height='auto';userSays(v)}}
+  if(id==='acct'){
+    const fn=$('#fn').value.trim(),ln=$('#ln').value.trim(),em=$('#em').value.trim(),pw=$('#pw').value;let ok=true;
+    for(const [el,good] of [[$('#fn'),!!fn],[$('#ln'),!!ln],[$('#em'),emOk(em)],[$('#pw'),pw.length>=8]]){el.classList.toggle('err',!good);ok=ok&&good}
+    $('#emH').style.display=emOk(em)?'none':'block';$('#pwH').className='hint'+(pw.length>=8?'':' err');
+    if(ok&&em.toLowerCase()==='existing@example.com'){$('#exist').style.display='block';return}
+    if(ok){S.first=fn;S.last=ln;setView('flow',0)}
+  }
+  if(id==='sin'){const em=$('#em').value.trim(),pw=$('#pw').value;
+    if(!emOk(em)||!pw){$('#bad').style.display='block';return}
+    if(pw==='wrong'){$('#bad').style.display='block';return}
+    setView('chat')}
+  if(id==='fgt'){if(emOk($('#em').value.trim()))$('#sent').style.display='block'}
+});
+render();
+</script>
+</body>
+</html>
